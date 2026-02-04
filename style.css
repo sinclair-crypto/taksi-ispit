@@ -1,0 +1,79 @@
+/* Reset box model i padding/margine */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+#selector, #quiz {
+  width: 100%;
+}
+
+.question {
+  margin-bottom: 25px;
+}
+
+#quiz h3, #quiz h4 {
+  white-space: normal !important;  /* lom dugih naslova */
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#answers div {
+  margin-bottom: 8px;
+  display: block;
+  white-space: normal !important; /* lom dugih odgovora */
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+#answers label {
+  display: block;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px;
+  margin: 6px 0;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: normal !important; /* lom teksta u dugmetu */
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  box-sizing: border-box;
+}
+
+.correct {
+  background-color: #c8f7c5;
+}
+
+.wrong {
+  background-color: #f7c5c5;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  display: block;
+}
