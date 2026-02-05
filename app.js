@@ -972,7 +972,7 @@ a) **veličini vozača**
 b) raspoloženju vozača
 c) **osjećaju udobnosti vozača**
 
-3.3. Svijest o važnosti fizičke i mentalne sposobnosti: načela zdrave, uravnotežene prehrane, djelovanje alkohola, droga ili drugih tvari, koje mogu utjecati na ponašanje, simptomi, uzroci, utjecaj umora i stresa, ključna uloga temeljnog ciklusa rad/odmor.
+### 3.3. Svijest o važnosti fizičke i mentalne sposobnosti: načela zdrave, uravnotežene prehrane, djelovanje alkohola, droga ili drugih tvari, koje mogu utjecati na ponašanje, simptomi, uzroci, utjecaj umora i stresa, ključna uloga temeljnog ciklusa rad/odmor.
 
 1. Povećanje koncentracije masnoća u organizmu rezultira:
 a) **povećanjem tjelesne težine**
@@ -1062,7 +1062,7 @@ a) **crijevni grčevi**
 b) **bol u trbuhu**
 c) **mučnina**
 
-3.4. Sposobnost procjenjivanja krizne situacije: ponašanje u izvanrednim situacijama, ocjena stanja, izbjegavanje komplikacija prometne nesreće, pozivanje pomoći, pomoć ozlijeđenima i pružanje prve pomoći, ponašanje u slučaju požara, evakuacija putnika iz vozila, osiguravanje sigurnosti putnika, ponašanje u slučaju napada i osnovna načela pripreme izvješća o nesreći.
+### 3.4. Sposobnost procjenjivanja krizne situacije: ponašanje u izvanrednim situacijama, ocjena stanja, izbjegavanje komplikacija prometne nesreće, pozivanje pomoći, pomoć ozlijeđenima i pružanje prve pomoći, ponašanje u slučaju požara, evakuacija putnika iz vozila, osiguravanje sigurnosti putnika, ponašanje u slučaju napada i osnovna načela pripreme izvješća o nesreći.
 
 1. Što je osoba dužna učiniti u slučaju prometne nesreće?
 a) **pružiti pomoć ozlijeđenima**
@@ -1094,7 +1094,7 @@ a) **reagirati bez panike**
 b) **što više udaljiti ljude od vozila**
 c) **pozvati pomoć**
 
-3.5. Sposobnost prilagodbe ponašanja poboljšanju ugleda poduzeća: ponašanje vozača i ugledpoduzeća, važnost standarda usluga vozača za poduzeće, uloge vozača i osoba s kojima je vozač  kontaktu ili s kojima se susreće, održavanje vozila, organizacija rada, komercijalne i financijsk posljedice spora.
+### 3.5. Sposobnost prilagodbe ponašanja poboljšanju ugleda poduzeća: ponašanje vozača i ugledpoduzeća, važnost standarda usluga vozača za poduzeće, uloge vozača i osoba s kojima je vozač  kontaktu ili s kojima se susreće, održavanje vozila, organizacija rada, komercijalne i financijsk posljedice spora.
 
 1. Vozač nije dužan primiti na prijevoz:
 a) **osobe koje nose vatreno oružje**
@@ -1322,3 +1322,4 @@ function loadImages(code, number) {
   }
   return html;
 }
+
