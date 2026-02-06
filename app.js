@@ -1181,7 +1181,8 @@ function parseFromPDFText(text) {
         number: parseInt(line),
         text: line.replace(/^\d+\.\s*/, ""),
         answers: {},
-        correct: []
+        correct: [],
+        lessonCode: currentQuiz.code   // ✅ ADD THIS
       };
       currentQuiz.questions.push(currentQuestion);
       continue;
@@ -1296,7 +1297,7 @@ function showQuestion() {
 
   div.innerHTML = `
     <h3>${q.number}. ${q.text}</h3>
-    ${loadImages(quiz.code, q.number)}
+    ${loadImages(q.lessonCode, q.number)}
     <div id="answers"></div>
     <button id="nextBtn">Dalje</button>
   `;
@@ -1404,5 +1405,6 @@ function loadImages(code, number) {
   }
   return html;
 }
+
 
 
