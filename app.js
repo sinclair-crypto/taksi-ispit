@@ -399,7 +399,7 @@ c) **5 metra**
 
 26. Koliki mora biti najmanji razmak od nadvožnjaka, podvožnjaka, mosta i tunela do zaustavljenog ili parkiranog vozila?
 a) 10 metara
-b) *15 metara**
+b) **15 metara**
 c) 20 metara
 
 27. Što je širina vidnog polja vozača
@@ -1205,6 +1205,33 @@ function parseFromPDFText(text) {
   return quizzes;
 }
 
+function isQuestionCorrect(question, selected) {
+  const correct = question.correct;
+
+  // must select same amount
+  if (selected.length !== correct.length) return false;
+
+  // every correct must be selected
+  return correct.every(c => selected.includes(c));
+}
+
+function generateExamQuestions(total) {
+  const pools = data.map(d => [...d.questions]);
+  const result = [];
+
+  while (result.length < total) {
+    for (let pool of pools) {
+      if (!pool.length) continue;
+      if (result.length >= total) break;
+
+      const q = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+      result.push(q);
+    }
+  }
+
+  return result.slice(0, total);
+}
+
 /**********************
  * 3️⃣ STATE + INIT
  **********************/
@@ -1220,7 +1247,19 @@ showSelector();
  **********************/
 function showSelector() {
   const div = document.getElementById("selector");
-  div.innerHTML = "<h2>Odaberi test</h2>";
+  const quizDiv = document.getElementById("quiz");
+  quizDiv.innerHTML = "";
+
+  div.innerHTML = `
+    <h2>Dobrodošli</h2>
+    <button onclick="showLessons()">📘 Lekcije</button>
+    <button onclick="startExam()">📝 Test znanja</button>
+  `;
+}
+
+function showLessons() {
+  const div = document.getElementById("selector");
+  div.innerHTML = "<h2>Lekcije</h2>";
 
   data.forEach((q, i) => {
     const b = document.createElement("button");
@@ -1228,6 +1267,19 @@ function showSelector() {
     b.onclick = () => startQuiz(i);
     div.appendChild(b);
   });
+}
+
+function startExam() {
+  quiz = {
+    title: "Test znanja",
+    code: "exam",
+    questions: generateExamQuestions(60)
+  };
+
+  index = 0;
+  userAnswers = [];
+  document.getElementById("selector").innerHTML = "";
+  showQuestion();
 }
 
 function startQuiz(i) {
@@ -1273,25 +1325,50 @@ function showQuestion() {
       return;
     }
 
-    userAnswers.push({ question: q, selected }); // sada selected može biti niz
+    userAnswers.push({ question: q, selected }); // s ada selected može biti niz
     index++;
-    index < quiz.questions.length ? showQuestion() : showResults();
+    index < quiz.questions.length
+  ? showQuestion()
+  : (quiz.title === "Test znanja" ? showExamResult() : showResults());
   };
 }
 
-function showResults() {
-  let correct = 0;
+function showResults(isExam = false) {
+  let points = 0;
+
   userAnswers.forEach(a => {
-    // provjeravamo: svi točni odgovori moraju biti označeni, a ništa pogrešno
-    const allCorrect = a.question.correct.every(c => a.selected.includes(c));
-    const noWrong = a.selected.every(s => a.question.correct.includes(s));
-    if (allCorrect && noWrong) correct++;
+    if (isQuestionCorrect(a.question, a.selected)) {
+      points++;
+    }
   });
 
+  const total = userAnswers.length;
+
   document.getElementById("quiz").innerHTML = `
-    <h2>📊 Rezultat</h2>
-    <p>Točno: ${correct} / ${userAnswers.length}</p>
-    <button onclick="review()">Pregled odgovora</button>
+    <div class="result-card">
+      <h2>📊 Rezultat</h2>
+      <p>Bodovi: <strong>${points} / ${total}</strong></p>
+      <button onclick="review()">Pregled odgovora</button>
+    </div>
+  `;
+} 
+
+function showExamResult() {
+  let points = 0;
+
+  userAnswers.forEach(a => {
+    if (isQuestionCorrect(a.question, a.selected)) points++;
+  });
+
+  const passed = points >= 42;
+
+  document.getElementById("quiz").innerHTML = `
+    <div class="result-card ${passed ? "correct" : "wrong"}">
+      <h2>${passed ? "🎉 PROLAZ" : "❌ PAD"}</h2>
+      <p>Bodovi: ${points} / ${userAnswers.length}</p>
+      <p>${passed ? "Čestitamo, položili ste test!" : "Nažalost, niste prošli. Pokušajte ponovno."}</p>
+      <button onclick="review()">Pregled odgovora</button>
+    </div>
   `;
 }
 
@@ -1304,9 +1381,14 @@ function review() {
       <div class="question">
         <h4>${a.question.number}. ${a.question.text}</h4>
         ${Object.entries(a.question.answers).map(([k, v]) => {
+          const isCorrect = a.question.correct.includes(k);
+          const isSelected = a.selected.includes(k);
+
           let cls = "";
-          if (a.question.correct.includes(k)) cls = "correct";
-          else if (a.selected.includes(k) && !a.question.correct.includes(k)) cls = "wrong";
+          if (isCorrect && isSelected) cls = "correct";        // green
+          else if (isCorrect && !isSelected) cls = "missed";   // yellow
+          else if (!isCorrect && isSelected) cls = "wrong";    // red
+
           return `<div class="${cls}">${k}) ${v}</div>`;
         }).join("")}
       </div>
@@ -1322,4 +1404,5 @@ function loadImages(code, number) {
   }
   return html;
 }
+
 
