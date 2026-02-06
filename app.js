@@ -1296,7 +1296,7 @@ function showQuestion() {
   const div = document.getElementById("quiz");
 
   div.innerHTML = `
-    <h3>${q.number}. ${q.text}</h3>
+    <h3>${quiz.title === "Test znanja" ? index + 1 : q.number}. ${q.text}</h3>
     ${loadImages(q.lessonCode, q.number)}
     <div id="answers"></div>
     <button id="nextBtn">Dalje</button>
@@ -1405,6 +1405,7 @@ function loadImages(code, number) {
   }
   return html;
 }
+
 
 
 
