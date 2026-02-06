@@ -77,3 +77,14 @@ img {
   margin: 10px 0;
   display: block;
 }
+
+.missed {
+  background-color: #fff3b0; /* yellow */
+}
+
+.result-card {
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  background: #f4f6f8;
+}
